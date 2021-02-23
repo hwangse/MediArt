@@ -40,7 +40,7 @@ YouTube 👉 [Video](https://youtu.be/59X9kSgl-9g)
 <br/><br/>
 
 ## Project7 : Blooming Smile
-<img src="./readme/smile1.gif" width="700" alt="smil"></img>
+<img src="./readme/smile1.gif" width="800" alt="smil"></img>
 
 <br/><br/>
 
