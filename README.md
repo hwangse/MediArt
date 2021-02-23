@@ -24,22 +24,24 @@
 <br/><br/>
 
 ## Project5 : Interactive Poem
+<img src="./readme/poem1.gif" width="400" alt="poem"></img>
+<img src="./readme/poem2.gif" width="400" alt="poem"></img>
+<br/>
+
+<img src="./readme/poem3.gif" width="400" alt="poem"></img>
+<img src="./readme/poem4.gif" width="400" alt="poem"></img>
 YouTube 👉 [Video](https://youtu.be/59X9kSgl-9g)
 <br/><br/>
 
 ## Project6 : Heart Explosion
-<img src="./readme/6_1.gif" width="400" alt="blinking"></img>
-<img src="./readme/6_2.gif" width="400" alt="blinking"></img>
+<img src="./readme/6_1.gif" width="400" alt="heart"></img>
+<img src="./readme/6_2.gif" width="400" alt="heart"></img>
 
 <br/><br/>
 
 ## Project7 : Blooming Smile
-
-
-<br/><br/>
-
-## Project8 : Ocean Pump
-YouTube 👉 [Video](https://youtu.be/wvy6SZK_SPo)
+<img src="./readme/smile1.gif" width="400" alt="smil"></img>
 
 <br/><br/>
+
 
