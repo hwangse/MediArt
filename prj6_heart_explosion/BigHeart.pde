@@ -1,106 +1,74 @@
-/*
-  Project #6 by Sehyun Hwang
- 
- * name : Heart Explosion
- * description : Fill your heart for the person whom you loves.
-                 You can fill the heart by hitting any keyboards including space bar and direction keys.
-                 If the percentage of heart become 100, then the firework of love will start.
- */
+class BigHeart {
+  float radius;
+  float angle;
+  float x, y, r;
+  float alpha;
 
-BigHeart []heart;
-int cnt=0;
-int max=15000;
-int sec=0;
-int blink=200;
-String num="0";
+  BigHeart(boolean fill) {
 
-boolean explode=false;
-boolean addFlag=false;
+    if (fill) {
+      radius=10;
+      angle=0;
 
-ArrayList<Firework> fireworks;
-PVector gravity = new PVector(0, 0.5);
+      update();
+      calc(angle);
 
-
-void setup() {
-  size(700, 700, P3D);
-  background(0);
-  smooth();
-  noStroke();
-  textSize(20);
-  textAlign(CENTER);
-
-  heart=new BigHeart[max];
-  for (int i=0; i<max; i++)
-    heart[i]=new BigHeart(true);
-
-  fireworks = new ArrayList<Firework>();
-}
-
-void draw() {
-  background(0);
-
-  pushMatrix();
-  translate(width/2, height/2);
-
-  if (!explode) {
-    if (!addFlag) {
-      blink-=3;
-      if (blink<100) addFlag=true;
-    } else {
-      blink+=3;
-      if (blink>200) addFlag=false;
-    }
-    fill(200, blink);
-    text("Fill your heart", 0, -height/3.5); 
-
-    fill(200);
-    if ((cnt/100)%5==0)
-      num=str((int)cnt/100);
-    text(" "+num+" %", 0, height/3);
-
-    fill(200, 50, 50);
-    text("♥", -40, height/3);
-
-    for (int i=0; i<cnt; i++) {
-      heart[i].heartDraw2();
-    }
-    for (int i=0; i<max; i++) {
-      if (heart[i].y>170-(cnt/37))
-        heart[i].heartDraw();
-    }
-    if (cnt-10>0)
-      cnt-=10;
-    if (cnt>max-5000) explode=true;
-  } else {
-    sec++;
-    //println(sec);
-    if (sec<62) {
-      for (int i=0; i<max; i++) {
-        if (sec<22)
-          heart[i].shrink();
-        else {
-          heart[i].explode();
-        }
-        heart[i].heartDraw();
+      if (random(1) > 0.3) {
+        r = random(13);
+      } else {
+        r = random(7);
       }
+
+      alpha=random(200);
     } else {
-      if (random(1) < 0.2) 
-        fireworks.add(new Firework());
-      for (int i = fireworks.size()-1; i >= 0; i--) {
-        Firework f = fireworks.get(i);
-        f.run();
-        if (f.done()) {
-          fireworks.remove(i);
-        }
-      }
+      radius=4;
+      angle=0;
+      r=random(2, 4);
+      update2();
+      calc(angle);
+      alpha=200;
     }
   }
-  popMatrix();
-}
+  void shrink() {
+    if (radius>0.5) radius -=0.5;
+    else
+    radius=0.1;
+    calc(angle);
+  }
 
-void keyPressed() { 
-  if (!explode) {
-    cnt+=150;
-    if (cnt>max) cnt=max;
+  void explode() {
+    radius += 1;
+    radius=random(radius*0.7, radius*1.3);
+    calc(angle);
+    if (alpha>0) alpha-=5;
+  }
+  void explode2() {
+    radius += 0.2;
+    calc(angle);
+    if (alpha>0) alpha-=5;
+  }
+  void heartDraw2() {
+    noStroke();
+    fill(200, 50, 50, alpha/3);
+    ellipse(x, y, r, r);
+  }
+  void heartDraw() {
+    noStroke();
+    fill(200, 50, 50, alpha);
+    ellipse(x, y, r, r);
+  }
+
+  void calc(float rot) {
+    x = radius *(16 * sin(rot) * sin(rot) * sin(rot));
+    y = -1 * radius * (13 * cos(rot) - 5 * cos(2*rot) - 2 * cos(3 * rot) - cos(4 * rot) );
+  }
+
+  void update() {
+    radius = 10 - pow(random(1), 1) * 10;
+    angle = random(TWO_PI);
+  }
+  void update2() {
+    radius = 2 - pow(random(1), 2) * 2;
+    angle = random(TWO_PI);
   }
 }
